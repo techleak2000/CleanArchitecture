@@ -21,8 +21,8 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.News
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var brands = await _mediator.Send(new GetAllArticleCategoriesQuery());
-            return Ok(brands);
+            var categories = await _mediator.Send(new GetAllArticleCategoriesQuery());
+            return Ok(categories);
         }
 
         /// <summary>
@@ -34,8 +34,8 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.News
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var brand = await _mediator.Send(new GetArticleCategoryByIdQuery() { Id = id });
-            return Ok(brand);
+            var category = await _mediator.Send(new GetArticleCategoryByIdQuery() { Id = id });
+            return Ok(category);
         }
 
         /// <summary>
