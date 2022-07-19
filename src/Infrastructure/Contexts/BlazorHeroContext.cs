@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
 using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
+using BlazorHero.CleanArchitecture.Domain.Entities.News;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
@@ -30,6 +31,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
         public DbSet<DocumentExtendedAttribute> DocumentExtendedAttributes { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
