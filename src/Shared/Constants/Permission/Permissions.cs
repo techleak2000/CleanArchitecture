@@ -41,6 +41,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Delete = "Permissions.Products.Delete";
             public const string Export = "Permissions.Products.Export";
             public const string Search = "Permissions.Products.Search";
+            public const string Import = "Permissions.Products.Import";
         }
 
         [DisplayName("Brands")]

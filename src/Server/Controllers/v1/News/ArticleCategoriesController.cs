@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.News
         }
 
         /// <summary>
-        /// Create/Update a Brand
+        /// Create/Update a ArticleCategory
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Status 200 OK</returns>
@@ -51,7 +51,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.News
         }
 
         /// <summary>
-        /// Delete a Brand
+        /// Delete a ArticleCategory
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>
