@@ -1,0 +1,53 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditArticleCategoryModal> _localizer
+
+<EditForm Model="@AddEditArticleCategoryModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditArticleCategoryModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add ArticleCategory"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update ArticleCategory"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditArticleCategoryModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditArticleCategoryModel.Id)" @bind-Value="AddEditArticleCategoryModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditArticleCategoryModel.Name)" @bind-Value="AddEditArticleCategoryModel.Name" Label="@_localizer["Name"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditArticleCategoryModel.Description)" @bind-Value="AddEditArticleCategoryModel.Description" Label="@_localizer["Description"]" />
+                </MudItem>
+               
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditArticleCategoryModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

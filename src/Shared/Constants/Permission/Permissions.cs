@@ -19,9 +19,21 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.Products.Search";
         }
 
-        [DisplayName("Products")]
-        [Description("Products Permissions")]
+        [DisplayName("Articles")]
+        [Description("Articles Permissions")]
         public static class Articles
+        {
+            public const string View = "Permissions.Products.View";
+            public const string Create = "Permissions.Products.Create";
+            public const string Edit = "Permissions.Products.Edit";
+            public const string Delete = "Permissions.Products.Delete";
+            public const string Export = "Permissions.Products.Export";
+            public const string Search = "Permissions.Products.Search";
+        }
+
+        [DisplayName("ArticleCategories")]
+        [Description("ArticleCategories Permissions")]
+        public static class ArticleCategories
         {
             public const string View = "Permissions.Products.View";
             public const string Create = "Permissions.Products.Create";

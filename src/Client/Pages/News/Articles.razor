@@ -22,6 +22,7 @@ else
                 @if (_canCreateArticles)
                 {
                     <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" @onclick="@(() => InvokeModal(0))" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
+                    <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" @onclick="@(() => InvokeCategoryModal(0))" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create Category"]</MudButton>
                     <MudButton DisableElevation Variant="Variant.Filled" OnClick="@(() => OnSearch(""))" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                     @if (_canExportArticles)
                     {
@@ -45,28 +46,23 @@ else
         </ToolBarContent>
         <HeaderContent>
             <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Id">@_localizer["Id"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Name">@_localizer["Name"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Brand">@_localizer["Brand"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Title">@_localizer["Title"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Sumary">@_localizer["Sumary"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Description">@_localizer["Description"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Barcode">@_localizer["Barcode"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Rate">@_localizer["Rate"]</MudTableSortLabel></MudTh>
             <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Id">@context.Id</MudTd>
             <MudTd DataLabel="Name">
-                <MudHighlighter Text="@context.Name" HighlightedText="@_searchString" />
+                <MudHighlighter Text="@context.Title" HighlightedText="@_searchString" />
             </MudTd>
-            <MudTd DataLabel="Brand">
-                <MudHighlighter Text="@context.Brand" HighlightedText="@_searchString" />
+             <MudTd DataLabel="Sumary">
+                <MudHighlighter Text="@context.Sumary" HighlightedText="@_searchString" />
             </MudTd>
             <MudTd DataLabel="Description">
                 <MudHighlighter Text="@context.Description" HighlightedText="@_searchString" />
             </MudTd>
-            <MudTd DataLabel="Barcode">
-                <MudHighlighter Text="@context.Barcode" HighlightedText="@_searchString" />
-            </MudTd>
-            <MudTd DataLabel="Rate">@context.Rate</MudTd>
+           
             <MudTd DataLabel="Actions" Style="text-align: right">
                 @if (_canEditArticles || _canDeleteArticles)
                 {

@@ -33,6 +33,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<DocumentType> DocumentTypes { get; set; }
 
         public DbSet<Article> Articles { get; set; }
+        
         public DbSet<ArticleCategory> ArticleCategories { get; set; }
         public DbSet<DocumentExtendedAttribute> DocumentExtendedAttributes { get; set; }
 

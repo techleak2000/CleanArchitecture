@@ -13,6 +13,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
         {
             _repository = repository;
         }
-        
+        public async Task<bool> IsArticleCategoryUsed(int categoryId)
+        {
+            return await _repository.Entities.AnyAsync(b => b.MainCategoryId == categoryId);
+        }
+
     }
 }

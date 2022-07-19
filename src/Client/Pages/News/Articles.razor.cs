@@ -14,18 +14,23 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Articles.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.News.Article;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.News.ArticleCategory;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
+using BlazorHero.CleanArchitecture.Application.Features.ArticleCategories.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.ArticleCategories.Queries.GetAll;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
+namespace BlazorHero.CleanArchitecture.Client.Pages.News
 {
     public partial class Articles
-    {
+    {                                   
         [Inject] private IArticleManager ArticleManager { get; set; }
+        [Inject] private IArticleCategoryManager ArticleCategoryManager { get; set; }
 
         [CascadingParameter] private HubConnection HubConnection { get; set; }
 
         private IEnumerable<GetAllPagedArticlesResponse> _pagedData;
+        private List<GetAllArticleCategoriesResponse> _categories = new();
         private MudTable<GetAllPagedArticlesResponse> _table;
         private int _totalItems;
         private int _currentPage;
@@ -35,12 +40,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private bool _bordered = false;
 
         private ClaimsPrincipal _currentUser;
-        private bool _canCreateArticles;
+        private bool _canCreateArticles;        
         private bool _canEditArticles;
         private bool _canDeleteArticles;
         private bool _canExportArticles;
         private bool _canSearchArticles;
-        private bool _loaded;
+        private bool _loaded;           
 
         protected override async Task OnInitializedAsync()
         {
@@ -66,6 +71,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 state.Page = 0;
             }
             await LoadData(state.Page, state.PageSize, state);
+            await LoadArticleCategoriesAsync();
             return new TableData<GetAllPagedArticlesResponse> { TotalItems = _totalItems, Items = _pagedData };
         }
 
@@ -91,6 +97,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 {
                     _snackBar.Add(message, Severity.Error);
                 }
+            }
+        }
+
+        private async Task LoadArticleCategoriesAsync()
+        {
+            var data = await ArticleCategoryManager.GetAllAsync();
+            if (data.Succeeded)
+            {
+                _categories = data.Data;
             }
         }
 
@@ -129,17 +144,40 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var parameters = new DialogParameters();
             if (id != 0)
             {
-                var product = _pagedData.FirstOrDefault(c => c.Id == id);
-                if (product != null)
+                var article = _pagedData.FirstOrDefault(c => c.Id == id);
+                if (article != null)
                 {
                     parameters.Add(nameof(AddEditArticleModal.AddEditArticleModel), new AddEditArticleCommand
                     {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Description = product.Description,
-                        Rate = product.Rate,
-                        BrandId = product.BrandId,
-                        Barcode = product.Barcode
+                        Id = article.Id,
+                        Title = article.Title,
+                        Description = article.Description,
+                        Sumary = article.Sumary,
+                        MainCategoryId = article.MainCategoryId
+                    });
+                }
+            }
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<AddEditArticleModal>(id == 0 ? _localizer["Create"] : _localizer["Edit"], parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
+            {
+                OnSearch("");
+            }
+        }
+        private async Task InvokeCategoryModal(int id = 0)
+        {
+            var parameters = new DialogParameters();
+            if (id != 0)
+            {
+                var articleCategory = _categories.FirstOrDefault(c => c.Id == id);
+                if (articleCategory != null)
+                {
+                    parameters.Add(nameof(AddEditArticleCategoryModal.AddEditArticleCategoryModel), new AddEditArticleCategoryCommand
+                    {
+                        Id = articleCategory.Id,
+                        Name = articleCategory.Name,
+                        Description = articleCategory.Description,
                     });
                 }
             }
