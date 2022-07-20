@@ -32,10 +32,13 @@
                 <MudItem xs="12" md="6">
                     <MudAutocomplete T="int" Label="@_localizer["ArticleCategory"]" For="@(() => AddEditArticleModel.MainCategoryId)" @bind-Value="AddEditArticleModel.MainCategoryId" ResetValueOnEmptyText="true" SearchFunc="@SearchArticleCategories" Variant="Variant.Filled" ToStringFunc="@(i => _categories.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
                 </MudItem>
-                <MudItem xs="12" md="6">
+                <MudItem xs="12" md="12">
                     <MudTextField For="@(() => AddEditArticleModel.Title)" @bind-Value="AddEditArticleModel.Title" Label="@_localizer["Title"]" />
                 </MudItem>
-                <MudItem xs="12" md="6">
+                <MudItem xs="12" md="12">
+                    <MudTextField For="@(() => AddEditArticleModel.Summary)" @bind-Value="AddEditArticleModel.Summary" Label="@_localizer["Summary"]" />
+                </MudItem>
+                <MudItem xs="12" md="12">
                     <MudTextField For="@(() => AddEditArticleModel.Description)" @bind-Value="AddEditArticleModel.Description" Label="@_localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">

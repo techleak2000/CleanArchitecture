@@ -49,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Articles.Queries.Exp
             {
                 { _localizer["Id"], item => item.Id },
                 { _localizer["Title"], item => item.Title },
-                { _localizer["Sumary"], item => item.Sumary },
+                { _localizer["Summary"], item => item.Summary },
                 { _localizer["Description"], item => item.Description },
                 { _localizer["Author"], item => item.Author }
             }, sheetName: _localizer["Articles"]);

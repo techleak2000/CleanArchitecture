@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Application.Specifications.Catalog;
+using BlazorHero.CleanArchitecture.Application.Specifications.News;
 using BlazorHero.CleanArchitecture.Domain.Entities.News;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Articles.Queries.GetAllPaged
 {
@@ -43,10 +44,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Articles.Queries.Get
 
         public async Task<PaginatedResult<GetAllPagedArticlesResponse>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken)
         {
+
             Expression<Func<Article, GetAllPagedArticlesResponse>> expression = e => new GetAllPagedArticlesResponse
             {
                 Id = e.Id,
                 Title = e.Title,
+                Summary = e.Summary,
                 Description = e.Description,
                 MainCategoryId = e.MainCategoryId
             };

@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Articles.Commands.Ad
 
         [Required]
         public string Description { get; set; }
-        public string Sumary { get; set; }
+        public string Summary { get; set; }
 
         public string ImageDataURL { get; set; }
 
@@ -70,7 +70,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Articles.Commands.Ad
                 if (article != null)
                 {
                     article.Title = command.Title ?? article.Title;
-                    article.Sumary = command.Sumary ?? article.Sumary;
+                    article.Summary = command.Summary ?? article.Summary;
                     article.Description = command.Description ?? article.Description;
                     if (uploadRequest != null)
                     {

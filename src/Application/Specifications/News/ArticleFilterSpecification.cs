@@ -1,7 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Specifications.Base;
 using BlazorHero.CleanArchitecture.Domain.Entities.News;
 
-namespace BlazorHero.CleanArchitecture.Application.Specifications.Catalog
+namespace BlazorHero.CleanArchitecture.Application.Specifications.News
 {
     public class ArticleFilterSpecification : HeroSpecification<Article>
     {
@@ -10,11 +10,11 @@ namespace BlazorHero.CleanArchitecture.Application.Specifications.Catalog
             Includes.Add(a => a.Category);
             if (!string.IsNullOrEmpty(searchString))
             {
-                Criteria = p => (p.Title.Contains(searchString) || p.Description.Contains(searchString) || p.Sumary.Contains(searchString) );
+                Criteria = p => (p.Title.Contains(searchString) || p.Description.Contains(searchString) || p.Summary.Contains(searchString) );
             }
             else
             {
-                Criteria = p => p.Title != null;
+                Criteria = p => true;
             }
         }
     }

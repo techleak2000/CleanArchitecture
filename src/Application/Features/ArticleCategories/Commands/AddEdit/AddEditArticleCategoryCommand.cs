@@ -14,11 +14,15 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ArticleCategories.Co
     public partial class AddEditArticleCategoryCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
         
         public string Description { get; set; }
-       
+
+        public string ImageDataURL { get; set; }
+        
+
     }
 
     internal class AddEditArticleCategoryCommandHandler : IRequestHandler<AddEditArticleCategoryCommand, Result<int>>

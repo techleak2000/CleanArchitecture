@@ -24,8 +24,8 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.News
         [HttpGet]
         public async Task<IActionResult> GetAll(int pageNumber, int pageSize, string searchString, string orderBy = null)
         {
-            var products = await _mediator.Send(new GetAllArticlesQuery(pageNumber, pageSize, searchString, orderBy));
-            return Ok(products);
+            var articles = await _mediator.Send(new GetAllArticlesQuery(pageNumber, pageSize, searchString, orderBy));
+            return Ok(articles);
         }
 
         /// <summary>

@@ -47,7 +47,7 @@ else
         <HeaderContent>
             <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Id">@_localizer["Id"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Title">@_localizer["Title"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Sumary">@_localizer["Sumary"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Summary">@_localizer["Summary"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel T="GetAllPagedArticlesResponse" SortLabel="Description">@_localizer["Description"]</MudTableSortLabel></MudTh>
             <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
         </HeaderContent>
@@ -56,8 +56,8 @@ else
             <MudTd DataLabel="Name">
                 <MudHighlighter Text="@context.Title" HighlightedText="@_searchString" />
             </MudTd>
-             <MudTd DataLabel="Sumary">
-                <MudHighlighter Text="@context.Sumary" HighlightedText="@_searchString" />
+             <MudTd DataLabel="Summary">
+                <MudHighlighter Text="@context.Summary" HighlightedText="@_searchString" />
             </MudTd>
             <MudTd DataLabel="Description">
                 <MudHighlighter Text="@context.Description" HighlightedText="@_searchString" />

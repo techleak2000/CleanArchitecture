@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities.News
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Sumary { get; set; }
+        public string Summary { get; set; }
 
         [Column(TypeName = "text")]
         public string ImageDataURL { get; set; }

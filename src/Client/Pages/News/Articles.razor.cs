@@ -152,7 +152,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.News
                         Id = article.Id,
                         Title = article.Title,
                         Description = article.Description,
-                        Sumary = article.Sumary,
+                        Summary = article.Summary,
                         MainCategoryId = article.MainCategoryId
                     });
                 }
