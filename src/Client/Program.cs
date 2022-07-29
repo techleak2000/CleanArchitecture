@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
 using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
+using Syncfusion.Blazor;
 
 namespace BlazorHero.CleanArchitecture.Client
 {
@@ -17,7 +18,9 @@ namespace BlazorHero.CleanArchitecture.Client
             var builder = WebAssemblyHostBuilder
                           .CreateDefault(args)
                           .AddRootComponents()
-                          .AddClientServices();
+                          .AddClientServices()
+                          ;
+            builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
             var host = builder.Build();
             var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
             if (storageService != null)

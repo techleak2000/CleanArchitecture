@@ -62,6 +62,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Articles.Commands.Ad
                     article.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
                 }
                 await _unitOfWork.Repository<Article>().AddAsync(article);
+                await _unitOfWork.Commit(cancellationToken);
                 return await Result<int>.SuccessAsync(article.Id, _localizer["Article Saved"]);
             }
             else

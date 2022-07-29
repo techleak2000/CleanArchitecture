@@ -1,12 +1,10 @@
-﻿@using Syncfusion.Blazor.RichTextEditor;
-@using Radzen
-@using Radzen.Blazor
-@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditArticleModal> _localizer
-
+﻿@page "/news/addarticle"
+@attribute [Authorize(Policy = Permissions.Articles.View)]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Articles> _localizer
+@using Syncfusion.Blazor.RichTextEditor;
 <EditForm Model="@AddEditArticleModel" OnValidSubmit="SaveAsync">
-    <FluentValidationValidator @ref="_fluentValidationValidator" />
-    <MudDialog>
-        <TitleContent>
+    @*<FluentValidationValidator @ref="_fluentValidationValidator" />*@
+  
             @{
                 if (AddEditArticleModel.Id == 0)
                 {
@@ -23,8 +21,7 @@
                     </MudText>
                 }
             }
-        </TitleContent>
-        <DialogContent>
+        
             <MudGrid>
                 @if (AddEditArticleModel.Id != 0)
                 {
@@ -42,13 +39,16 @@
                     <MudTextField For="@(() => AddEditArticleModel.Summary)" @bind-Value="AddEditArticleModel.Summary" Label="@_localizer["Summary"]" />
                 </MudItem>
                 <MudItem xs="12" md="12">
-                     <SfRichTextEditor ShowCharCount="true"  @bind-Value="@AddEditArticleModel.Description" AutoSaveOnIdle="true" >
+             
+                <SfRichTextEditor ShowCharCount="true"  @bind-Value="@AddEditArticleModel.Description" AutoSaveOnIdle="true" >
                     <RichTextEditorToolbarSettings Items="@Tools"  />
                     <RichTextEditorQuickToolbarSettings Table="@TableQuickToolbarItems" />
                     @*<RichTextEditorEvents ValueChange="@OnDescriptionChange"></RichTextEditorEvents>*@
                 </SfRichTextEditor>
-                    
                 </MudItem>
+               @* <MudItem xs="12" md="12">
+                    <MudTextField For="@(() => AddEditArticleModel.Description)" @bind-Value="AddEditArticleModel.Description" Label="@_localizer["Description"]" />
+                </MudItem>*@
                 <MudItem xs="12" md="6">
                     <MudItem>
                         <MudAvatar Image="@(AddEditArticleModel.ImageDataURL)" Square="true" Style="height: auto; width: auto; max-height: 100%"> </MudAvatar>
@@ -85,9 +85,7 @@
                     </MudItem>
                 </MudItem>
             </MudGrid>
-        </DialogContent>
-        <DialogActions>
-            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+  
             @if (AddEditArticleModel.Id != 0)
             {
                 <MudButton DisableElevation Variant="Variant.Filled" ButtonType="MudBlazor.ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
@@ -96,6 +94,5 @@
             {
                 <MudButton DisableElevation Variant="Variant.Filled" ButtonType="MudBlazor.ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
             }
-        </DialogActions>
-    </MudDialog>
+    
 </EditForm>
