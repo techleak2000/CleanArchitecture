@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
 using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using Syncfusion.Blazor;
-
+using Radzen;
 namespace BlazorHero.CleanArchitecture.Client
 {
     public static class Program
@@ -21,6 +21,10 @@ namespace BlazorHero.CleanArchitecture.Client
                           .AddClientServices()
                           ;
             builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
+            builder.Services.AddScoped<DialogService>();
+            builder.Services.AddScoped<NotificationService>();
+            builder.Services.AddScoped<TooltipService>();
+            builder.Services.AddScoped<ContextMenuService>();
             var host = builder.Build();
             var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
             if (storageService != null)

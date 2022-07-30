@@ -17,7 +17,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Radzen;
+using Radzen.Blazor;
 namespace BlazorHero.CleanArchitecture.Client.Pages.News
 {
     public partial class AddEditArticle
@@ -182,8 +183,22 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.News
         }
         public void OnCreated(object args)
         {
-           
 
+
+        }
+        void OnPaste(HtmlEditorPasteEventArgs args)
+        {
+            //console.Log($"Paste: {args.Html}");
+        }
+
+        void OnChange(string html)
+        {
+            // console.Log($"Change: {html}");
+        }
+
+        void OnExecute(HtmlEditorExecuteEventArgs args)
+        {
+            // console.Log($"Execute: {args.CommandName}");
         }
     }
 }

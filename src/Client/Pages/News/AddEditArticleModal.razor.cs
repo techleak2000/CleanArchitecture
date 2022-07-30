@@ -16,6 +16,8 @@ using Blazored.FluentValidation;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.News.ArticleCategory;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.News.Article;
 using Syncfusion.Blazor.RichTextEditor;
+using Radzen;
+using Radzen.Blazor;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.News
 {
@@ -131,6 +133,21 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.News
         private void OnDescriptionChange(Syncfusion.Blazor.RichTextEditor.ChangeEventArgs args)
         {
             AddEditArticleModel.Description = args.Value;
+        }
+        //EventConsole console;
+        void OnPaste(HtmlEditorPasteEventArgs args)
+        {
+            //console.Log($"Paste: {args.Html}");
+        }
+
+        void OnChange(string html)
+        {
+            // console.Log($"Change: {html}");
+        }
+
+        void OnExecute(HtmlEditorExecuteEventArgs args)
+        {
+            // console.Log($"Execute: {args.CommandName}");
         }
         private List<ToolbarItemModel> Tools = new List<ToolbarItemModel>()
     {
